@@ -1,8 +1,9 @@
 body {
-  background: #875105 url('../img/background.jpg') no-repeat;
+  background: #000000 url('../img/neko.jpg') no-repeat;
   background-size: cover;
   padding: 0;
   margin: 0;
+  color:white;
 }
 
 .ui.main.container {
@@ -11,11 +12,12 @@ body {
 
 a.logo {
   font-family: 'Exo', sans-serif;
-  color: #f33;
+ /* color: #f33;*/
+ color: #3f9;
 }
 
 div.center.column {
-  max-width: 450px;
+  max-width: 550px;
 }
 
 .statement {
@@ -24,14 +26,16 @@ div.center.column {
 }
 
 .register {
-  color:#0066CC;
+  /*color:#0066CC;*/
+  color: #8fadcc;
   font-size: 16px;
   font-weight: bold;
   text-decoration: underline;
 }
 
 a.campaigns {
-  color:red;
+ /*color:red;*/
+  color:#e6ffff;
   font-size:16px;
   font-weight: bold;
 }

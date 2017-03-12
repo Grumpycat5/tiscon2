@@ -1,3 +1,5 @@
+
+
 package net.unit8.sigcolle.dao;
 
 import java.util.List;
@@ -21,4 +23,8 @@ public interface CampaignDao {
 
     @Insert
     int insert(Campaign campaign);
+
+    @Select
+    List<Campaign> selectByCreateUserId(String createUserId);
 }
+

@@ -112,8 +112,17 @@ public class CampaignController {
 
         CampaignDao campaignDao = domaProvider.getDao(CampaignDao.class);
         // TODO Databaseに登録する
+        Campaign campaign = new Campaign();
 
-        HttpResponse response = redirect("/campaign/" + model.getCampaignId(), SEE_OTHER);
+        model.setTitle(form.getTitle());
+        model.setStatement(form.getStatement());
+        model.setGoal(Long.parseLong(form.getGoal()));
+        model.setCreateUserId(principal.getUserId());
+
+        campaignDao.insert(model);
+
+
+        HttpResponse response = redirect("/", SEE_OTHER);
         response.setFlash(new Flash<>(""/* TODO: キャンペーンが新規作成できた旨のメッセージを生成する */));
 
         return response;
@@ -127,7 +136,11 @@ public class CampaignController {
      * @param session ログインしているユーザsession
      */
     public HttpResponse listCampaigns(Session session) {
-        throw new UnsupportedOperationException("実装してください !!");
+        LoginUserPrincipal principal = (LoginUserPrincipal) session.get("principal");
+        CampaignDao campaignDao = domaProvider.getDao(CampaignDao.class);
+
+        return templateEngine.render("user/campaigns",
+                "userCampaign", campaignDao.selectByCreateUserId(String.valueOf(principal.getUserId())));
     }
 
     private HttpResponse showCampaign(Long campaignId,
@@ -150,3 +163,6 @@ public class CampaignController {
         );
     }
 }
+
+
+

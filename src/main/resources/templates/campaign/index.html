@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <title></title>
     <link href="http://fonts.googleapis.com/css?family=Exo:900" rel="stylesheet"/>
@@ -32,11 +32,13 @@ xmlns:th="http://www.thymeleaf.org">
                             <span th:text="${signatureCount}">345</span>人の賛同
                         </p>
                         <div class="ui red progress">
-                            <div class="bar" th:style="${'width:' + (signatureCount * 100 / campaign.goal) + '%'}"></div>
+                            <div class="bar"
+                                 th:style="${campaign.goal - signatureCount > 0 ? 'width:' + (signatureCount * 100 / campaign.goal) + '%' :
+                                  'width:' + 100+ '%' }"></div>
                         </div>
                         <p>
                             <span th:text="${campaign.goal}">1000</span>人まで残り
-                            <span th:text="${campaign.goal - signatureCount}">1</span>人の賛同者が必要です！
+                            <span th:text="${campaign.goal - signatureCount > 0 ? campaign.goal - signatureCount : 0}">1</span>人の賛同者が必要です！
                         </p>
 
                         <form class="ui form" method="post" th:action="@{~/campaign/{id}(id=${campaign.campaignId})}" th:classappend="${signature.hasErrors()} ? 'error'">
